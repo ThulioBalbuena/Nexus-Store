@@ -1,5 +1,4 @@
 package DAO;
-
 import java.sql.*;
 
 public abstract class ConnectionDAO {
@@ -7,7 +6,7 @@ public abstract class ConnectionDAO {
     PreparedStatement pst; // declaração(query) preparada - código em sql
     Statement st; //declaração(query) - código em sql
     ResultSet rs; //resposta do banco
-    String database = "integracao";//nome do BD
+    String database = "Nexus";//nome do BD
     String user = "root";
     String password = "root";
     String url = "jdbc:mysql://localhost:3306/" + database + "?useTimezone=true&serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true";

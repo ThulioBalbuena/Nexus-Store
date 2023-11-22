@@ -1,4 +1,4 @@
-package Nexus;
+package program.DAO.Model;
 
 public class Plataforma {
     

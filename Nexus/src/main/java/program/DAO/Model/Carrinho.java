@@ -1,12 +1,12 @@
-package Nexus;
+package program.DAO.Model;
 
 public class Carrinho {
     private int idCarrinho;
-    private int Comprador_email;
+    private int Comprador_cpf;
 
-    public Carrinho(int idCarrinho, int Comprador_email) {
+    public Carrinho(int idCarrinho, int Comprador_cpf) {
         this.idCarrinho = idCarrinho;
-        this.Comprador_email = Comprador_email;
+        this.Comprador_cpf = Comprador_cpf;
     }
 
     // Getter
@@ -14,7 +14,7 @@ public class Carrinho {
         return idCarrinho;
     }
 
-    public int getUsuario_idUsuario() {
-        return Comprador_email;
+    public int getComprador_cpf() {
+        return Comprador_cpf;
     }
 }

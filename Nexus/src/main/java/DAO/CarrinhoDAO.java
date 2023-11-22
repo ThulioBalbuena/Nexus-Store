@@ -1,7 +1,7 @@
 package DAO;
 
-import Nexus.Carrinho;
 
+import program.DAO.Model.Carrinho;
 import java.sql.SQLException;
 
 public class CarrinhoDAO extends ConnectionDAO {
@@ -14,7 +14,7 @@ public class CarrinhoDAO extends ConnectionDAO {
         String sql = "INSERT INTO Carrinho (Comprador_cpf) values (?)";
         try {
             pst = con.prepareStatement(sql);
-            pst.setInt(1, carrinho.getUsuario_idUsuario());
+            pst.setInt(1, carrinho.getComprador_cpf());
             pst.execute();
             sucesso = true;
         } catch (SQLException exc) {
@@ -34,7 +34,7 @@ public class CarrinhoDAO extends ConnectionDAO {
     public int selectCarrinhoID(int Comprador_cpf) {
         connectToDB();
         // Pega o ID do Carrinho que pertence ao usuário do ID fornecido
-        String sql = "SELECT idCarrinho FROM Carrinho, Usuario WHERE Carrinho.Comprador_cpf=?";
+        String sql = "SELECT idCarrinho FROM Carrinho, Comprador WHERE Carrinho.Comprador_cpf=?";
         int idCarrinho = 0;
         try {
             pst = con.prepareStatement(sql);

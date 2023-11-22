@@ -1,4 +1,4 @@
-package Nexus;
+package program.DAO.Model;
 
 public class Jogo_has_Plataforma {
     private int Jogo_idJogo;
