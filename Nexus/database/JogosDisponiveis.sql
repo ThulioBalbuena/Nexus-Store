@@ -1,6 +1,6 @@
 use Nexus;
 
-INSERT INTO Jogo (idJogos, Gênero_idGênero, Nome, Preco, ano_de_lancamento, qtd_jogadores) VALUES
+INSERT INTO Jogo (idJogos, Genero_idGenero, Nome, Preco, ano_de_lancamento, qtd_jogadores) VALUES
 (1, 1, 'The Witcher 3', 179.99, 2015, 1),
 (2, 2, 'Forza Horizon 5', 229, 2021, 2),
 (3, 2, 'Need for Speed Heat', 129.99, 2019, 2),

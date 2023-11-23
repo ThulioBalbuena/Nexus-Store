@@ -2,12 +2,12 @@ CREATE SCHEMA IF NOT EXISTS `Nexus` DEFAULT CHARACTER SET utf8 ;
 USE `Nexus` ;
 
 -- -----------------------------------------------------
--- Table `Nexus`.`Gênero`
+-- Table `Nexus`.`Genero`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Nexus`.`Gênero` (
-  `idGênero` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `Nexus`.`Genero` (
+  `idGenero` INT NOT NULL,
   `nome` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`idGênero`));
+  PRIMARY KEY (`idGenero`));
 
 
 
@@ -16,15 +16,15 @@ CREATE TABLE IF NOT EXISTS `Nexus`.`Gênero` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Nexus`.`Jogo` (
   `idJogos` INT NOT NULL,
-  `Gênero_idGênero` INT NOT NULL,
+  `Genero_idGenero` INT NOT NULL,
   `Nome` VARCHAR(45) NOT NULL,
   `Preco` DOUBLE NOT NULL,
   `ano_de_lancamento` INT NOT NULL,
   `qtd_jogadores` INT NOT NULL,
-  PRIMARY KEY (`idJogos`, `Gênero_idGênero`),
-  CONSTRAINT `fk_Jogo_Gênero1`
-    FOREIGN KEY (`Gênero_idGênero`)
-    REFERENCES `Nexus`.`Gênero` (`idGênero`)
+  PRIMARY KEY (`idJogos`, `Genero_idGenero`),
+  CONSTRAINT `fk_Jogo_Genero1`
+    FOREIGN KEY (`Genero_idGenero`)
+    REFERENCES `Nexus`.`Genero` (`idGenero`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
