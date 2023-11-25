@@ -1,70 +1,71 @@
-import DAO.JogoDAO;
-import program.DAO.Model.Comprador;
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
 
-import java.util.Objects;
 import java.util.Scanner;
+import program.DAO.Model.Comprador;
+import DAO.*;
+import program.DAO.Model.Jogo_has_Plataforma;
 
 public class Main {
+    public Main() {
+    }
+
     public static void main(String[] args) {
-
         Scanner entrada = new Scanner(System.in);
-
         System.out.println("Olá, seja bem vindo a nossa loja de jogos: a Nexus Store!");
         System.out.println("Antes de você poder acessar a loja precisamos que você insira suas informações.");
-
+        System.out.println("CPF: ");
+        String cpfUsuario = entrada.nextLine();
         System.out.println("\nNome: ");
         String nomeUsuario = entrada.nextLine();
         System.out.println("E-mail: ");
         String emailUsuario = entrada.nextLine();
-        System.out.println("Senha: ");
-        int senhaUsuario = entrada.nextInt();
-        System.out.println("Saldo: ");
+        //System.out.println("Senha: ");
+        //int senhaUsuario = entrada.nextInt();
+        System.out.println("Deposite um valor em sua conta: ");
         int saldoUsuario = entrada.nextInt();
-
-        Comprador usuario = new Comprador(nomeUsuario, emailUsuario, senhaUsuario, saldoUsuario);
-
+        new Comprador(cpfUsuario, nomeUsuario, emailUsuario, saldoUsuario);
         System.out.println("\nAgora que você já inseriu as suas informações, fique à vontade para explorar a nossa loja!");
-
         boolean menu = true;
-        int opcao;
+
+        JogoDAO jogoDAO = new JogoDAO();
+        CompradorDAO compradorDAO = new CompradorDAO();
+        CarrinhoDAO carrinhoDAO = new CarrinhoDAO();
+        Carrinho_has_JogoDAO carrinhoHasJogoDAO = new Carrinho_has_JogoDAO();
+        Jogo_has_PlataformaDAO jogoHasPlataformaDAO = new Jogo_has_PlataformaDAO();
 
         while(menu) {
-
             System.out.println("1 - Listar todos os jogos disponíveis");
-            System.out.println("2 - Escolher um gênero e listar todos os jogos disponíveis desse gênero");
+            System.out.println("2 - Escolha um genero para ver todos os jogos disponíveis: ");
             System.out.println("3 - Adicionar jogo ao carrinho");
             System.out.println("4 - Retirar jogo do carrinho");
             System.out.println("5 - Mostrar quais jogos estão no carrinho");
             System.out.println("6 - Mostrar custo total atual do carrinho");
-            System.out.println("7 - Finalizar compra e encerrar o programa\n");
-
-            opcao = entrada.nextInt();
-
+            System.out.println("7 - Finalizar compra\n");
+            System.out.println("8 - Sair da loja");
+            int opcao = entrada.nextInt();
             switch (opcao) {
                 case 1:
-
+                    System.out.println("Lista de jogos disponíveis: ");
+                    jogoDAO.selectJogo();
+                    System.out.println("\n Plataformas em que cada jogo esta disponível: ");
+                    jogoHasPlataformaDAO.selectJogo_has_Plataforma();
                     break;
                 case 2:
-
-                    break;
                 case 3:
-
-                    break;
                 case 4:
-
-                    break;
                 case 5:
-
-                    break;
                 case 6:
-
+                default:
                     break;
                 case 7:
-
+                    System.out.println("Obrigado por comprar na Nexus Store!");
                     menu = false;
-                    break;
+                case 8 :
+                    menu = false;
             }
-
         }
 
     }

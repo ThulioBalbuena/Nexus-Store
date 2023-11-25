@@ -2,23 +2,20 @@ package program.DAO.Model;
 
 public class Jogo {
 
-
-    private int idJogo;
+    private int idjogo;
     private String Nome;
     private double Preco;
     private int qtd_jogadores;
     private int ano_de_lancamento;
-    private int Genero_idGenero;
+    private String Genero_nome;
 
-
-    public Jogo(int idJogo, String nome, double preco, int ano_de_lancamento, int qtdJogadores) {
-        this.idJogo = idJogo;
+    public Jogo(int idjogo, String Nome, String Genero_nome,double Preco, int ano_de_lancamento, int qtd_jogadores) {
+        this.idjogo = idjogo;
         this.Nome = Nome;
         this.Preco = Preco;
         this.qtd_jogadores = qtd_jogadores;
         this.ano_de_lancamento = ano_de_lancamento;
-        this.Genero_idGenero = Genero_idGenero;
-
+        this.Genero_nome = Genero_nome;
     }
 
     public String getNome() {
@@ -45,12 +42,12 @@ public class Jogo {
         this.ano_de_lancamento = ano_de_lancamento;
     }
 
-    public int getGenero_idGenero() {
-        return Genero_idGenero;
+    public String getGenero_nome() {
+        return Genero_nome;
     }
 
-    public void setGenero_idGenero(int genero_idGenero) {
-        Genero_idGenero = genero_idGenero;
+    public void setGenero_nome(int Genero_nome) {
+        Genero_nome = Genero_nome;
     }
 
     public double getPreco() {
@@ -61,12 +58,12 @@ public class Jogo {
         Preco = preco;
     }
 
-    public int getIdJogo() {
-        return idJogo;
+    public int getidjogo() {
+        return idjogo;
     }
 
-    public void setIdJogo(int idJogo) {
-        this.idJogo = idJogo;
+    public void setidjogo(int idjogo) {
+        this.idjogo = idjogo;
     }
 }
 

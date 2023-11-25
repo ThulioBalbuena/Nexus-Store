@@ -39,7 +39,7 @@ public class JogoDAO extends ConnectionDAO {
     public boolean updateJogo(int id, Jogo Jogo) {
         connectToDB();
         // Atualiza as informações de um Jogo específico
-        String sql = "UPDATE Jogo SET Nome=?, preco=?, ano_de_lancamento=?, qtd_jogadores=? where idJogo=?";
+        String sql = "UPDATE Jogo SET Nome=?, Preco=?, ano_de_lancamento=?, qtd_jogadores=? where idjogo=?";
         try {
             pst = con.prepareStatement(sql);
             pst.setString(1, Jogo.getNome());
@@ -67,7 +67,7 @@ public class JogoDAO extends ConnectionDAO {
     public boolean deleteJogo(int id) {
         connectToDB();
         // Remove um Jogo da tabela
-        String sql = "DELETE FROM Jogo where idJogo=?";
+        String sql = "DELETE FROM Jogo where idjogo=?";
         try {
             pst = con.prepareStatement(sql);
             pst.setInt(1, id);
@@ -88,7 +88,7 @@ public class JogoDAO extends ConnectionDAO {
     }
 
     //SELECT
-    public ArrayList<Jogo> selectJogo() {
+    public ArrayList<Jogo>selectJogo() {
         ArrayList<Jogo> Jogos = new ArrayList<>();
         connectToDB();
         // Exibe todos os Jogos cadastrados
@@ -98,9 +98,10 @@ public class JogoDAO extends ConnectionDAO {
             rs = st.executeQuery(sql);
             System.out.println("Lista de Jogos: ");
             while (rs.next()) {
-                Jogo JogoAux = new Jogo(rs.getInt("idJogo"), rs.getString("Nome"), rs.getDouble("Preco"), rs.getInt("ano_de_lancamento"), rs.getInt("qtd_jogadores"));
-                System.out.println("ID = " + JogoAux.getIdJogo());
+                Jogo JogoAux = new Jogo(rs.getInt("idjogo"),rs.getString("Nome"),rs.getString("Genero_nome"), rs.getDouble("Preco"), rs.getInt("ano_de_lancamento"), rs.getInt("qtd_jogadores"));
+                System.out.println("ID = " + JogoAux.getidjogo());
                 System.out.println("Nome = " + JogoAux.getNome());
+                System.out.println("Genero = " + JogoAux.getGenero_nome());
                 System.out.println("Valor = R$ " + String.format("%.2f", JogoAux.getPreco()));
                 System.out.println("Quantidade de jogadores = " + JogoAux.getQtd_jogadores());
                 System.out.println("Ano de lançamento= " + JogoAux.getAno_de_lancamento());
@@ -123,18 +124,19 @@ public class JogoDAO extends ConnectionDAO {
     }
 
     // Mostra todas as informações referentes a um único Jogo
-    public Jogo selectJogoEspecifico(int idJogo) {
+    public Jogo selectJogoEspecifico(int idjogo) {
         Jogo JogoAux = null;
         connectToDB();
-        String sql = "SELECT * FROM Jogo WHERE idJogo = ?";
+        String sql = "SELECT * FROM Jogo WHERE idjogo = ?";
         try {
             pst = con.prepareStatement(sql);
-            pst.setInt(1, idJogo);
+            pst.setInt(1, idjogo);
             rs = pst.executeQuery();
-            System.out.println("Informações do Jogo " + idJogo + " :");
+            System.out.println("Informações do Jogo " + idjogo + " :");
             if (rs.next()) {
-                JogoAux = new Jogo(rs.getInt("idJogo"), rs.getString("Nome"), rs.getDouble("Preco"), rs.getInt("ano_de_lancamento"), rs.getInt("qtd_jogadores"));
+                JogoAux = new Jogo(rs.getInt("idjogo"), rs.getString("Nome"),rs.getString("Genero_nome"),rs.getDouble("Preco"), rs.getInt("ano_de_lancamento"), rs.getInt("qtd_jogadores"));
                 System.out.println("Nome = " + JogoAux.getNome());
+                System.out.println("Genero = " + JogoAux.getGenero_nome());
                 System.out.println("Valor = R$ " + String.format("%.2f", JogoAux.getPreco()));
                 System.out.println("Quantidade de Jogadores = " + JogoAux.getQtd_jogadores ());
                 System.out.println("Ano_de_lançamento = " + JogoAux.getAno_de_lancamento());
@@ -157,12 +159,12 @@ public class JogoDAO extends ConnectionDAO {
 }
 /*
     // Diminui 1 unidade do estoque do Jogo ao realizar uma compra
-    public boolean diminuirEstoque(int idJogo) {
+    public boolean diminuirEstoque(int idjogo) {
         connectToDB();
-        String sql = "UPDATE Jogo SET qtd_disponivel= qtd_disponivel - 1 WHERE idJogo=?";
+        String sql = "UPDATE Jogo SET qtd_disponivel= qtd_disponivel - 1 WHERE idjogo=?";
         try {
             pst = con.prepareStatement(sql);
-            pst.setInt(1, idJogo);
+            pst.setInt(1, idjogo);
             pst.execute();
             sucesso = true;
         } catch (SQLException ex) {

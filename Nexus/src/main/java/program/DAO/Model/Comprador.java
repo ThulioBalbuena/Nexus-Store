@@ -2,15 +2,15 @@ package program.DAO.Model;
 
 public class Comprador {
 
+    private String cpf;
     private String email;
     private String nome;
-    private int senha;
     private int saldo;
 
-    public Comprador(String email, String nome, int senha, int saldo) {
+    public Comprador(String cpf, String email, String nome, int saldo) {
+        this.cpf = cpf;
         this.email = email;
         this.nome = nome;
-        this.senha = senha;
         this.saldo = saldo;
     }
 
@@ -23,10 +23,9 @@ public class Comprador {
         return nome;
     }
 
-    public int getSenha() {
-        return senha;
+    public String getCpf() {
+        return cpf;
     }
-
     public int getSaldo() {
         return saldo;
     }
