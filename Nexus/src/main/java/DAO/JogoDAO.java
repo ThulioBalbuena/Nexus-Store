@@ -105,7 +105,7 @@ public class JogoDAO extends ConnectionDAO {
                 System.out.println("Valor = R$ " + String.format("%.2f", JogoAux.getPreco()));
                 System.out.println("Quantidade de jogadores = " + JogoAux.getQtd_jogadores());
                 System.out.println("Ano de lançamento= " + JogoAux.getAno_de_lancamento());
-                System.out.println("--------------------------------");
+                System.out.println("---------------------------------");
                 Jogos.add(JogoAux);
             }
             sucesso = true;
