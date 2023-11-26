@@ -35,7 +35,6 @@ public class Carrinho_has_JogoDAO extends ConnectionDAO{
 
     public boolean deleteCarrinho_Has_Jogo(int idCarrinho, int nome) {
         connectToDB();
-        // Remove o Jogo do carrinho
         String sql = "DELETE FROM carrinho_has_Jogo where Carrinho_idCarrinho=? AND Jogo_idjogo=?";
         try {
             pst = con.prepareStatement(sql);
@@ -58,27 +57,4 @@ public class Carrinho_has_JogoDAO extends ConnectionDAO{
         return sucesso;
     }
 
-
-    public boolean removerItensCarrinho(int idCarrinho) {
-        connectToDB();
-        // Remove todos os itens do carrinho
-        String sql = "DELETE FROM Carrinho_has_Jogo where Carrinho_idCarrinho=?";
-        try {
-            pst = con.prepareStatement(sql);
-            pst.setInt(1, idCarrinho);
-            pst.execute();
-            sucesso = true;
-        } catch (SQLException ex) {
-            System.out.println("Erro = " + ex.getMessage());
-            sucesso = false;
-        } finally {
-            try {
-                con.close();
-                pst.close();
-            } catch (SQLException exc) {
-                System.out.println("Erro: " + exc.getMessage());
-            }
-        }
-        return sucesso;
-    }
 }

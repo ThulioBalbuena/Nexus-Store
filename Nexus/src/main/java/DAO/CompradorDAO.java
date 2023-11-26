@@ -20,14 +20,16 @@ public class CompradorDAO extends ConnectionDAO{
             pst.execute();
             sucesso = true;
         } catch (SQLException exc) {
-            System.out.println("Erro: " + exc.getMessage());
+            System.out.println("Erro: Este CPF já foi cadastrado!");
+            System.exit(0);
             sucesso = false;
         } finally {
             try {
                 con.close();
                 pst.close();
             } catch (SQLException exc) {
-                System.out.println("Erro: " + exc.getMessage());
+                System.out.println("Erro: Este CPF já foi cadastrado!");
+                System.exit(0);
             }
         }
         return sucesso;
@@ -101,5 +103,28 @@ public class CompradorDAO extends ConnectionDAO{
             }
         }
         return saldo;
+    }
+
+    //DELETE
+    public void deleteComprador(int cpf) {
+        connectToDB();
+        String sql = "DELETE FROM Comprador WHERE cpf=?";
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setInt(1, cpf);
+            pst.execute();
+            sucesso = true;
+        } catch (SQLException exc) {
+            System.out.println("Erro: " + exc.getMessage());
+            sucesso = false;
+            System.exit(0);
+        } finally {
+            try {
+                con.close();
+                pst.close();
+            } catch (SQLException exc) {
+                System.out.println("Erro: " + exc.getMessage());
+            }
+        }
     }
 }

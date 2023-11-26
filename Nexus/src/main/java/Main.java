@@ -14,8 +14,10 @@ import program.DAO.Model.Compra;
 public class Main {
     public static void main(String[] args) {
         Scanner entrada = new Scanner(System.in);
+        System.out.println("\n");
+        System.out.println("----------------------");
         System.out.println("Olá, seja bem vindo a nossa loja de jogos: a Nexus Store!");
-        System.out.println("Antes de você poder acessar a loja precisamos que você insira suas informações.\n");
+        System.out.println("Antes de você poder acessar a loja precisamos que você insira suas informações abaixo: \n");
         System.out.print("CPF: ");
         int cpfUsuario = entrada.nextInt();
         System.out.print("Nome: ");
@@ -49,7 +51,7 @@ public class Main {
             System.out.println("4 - Ver custo atual do carrinho");
             System.out.println("5 - Depositar saldo na conta");
             System.out.println("6 - Finalizar compra e sair da loja");
-            System.out.println("7 - Sair da loja\n");
+            System.out.println("7 - Sair da conta e encerrar o acesso\n");
 
             int opcao = entrada.nextInt();
 
@@ -114,7 +116,7 @@ public class Main {
                     System.out.println("Depósito realizado com sucesso! Seu saldo atual é de: " + compradorDAO.verSaldo(cpfUsuario));
                     break;
                     case 6:
-                        //UPDATE saldo do comprador e DELETE do carrinho_has_jogo
+                        //UPDATE
                         System.out.println("----------------------");
                         System.out.println("Obrigado por comprar na Nexus Store!");
                         compradorDAO.verSaldo(cpfUsuario);
@@ -126,8 +128,12 @@ public class Main {
                         menu = false;
                         break;
                 case 7:
+                    //delete
                     System.out.println("----------------------");
                     System.out.println("Obrigado por visitar a Nexus Store!");
+                    System.out.println("Saindo da conta e excluindo dados...");
+                    carrinhoDAO.deleteCarrinho(cpfUsuario);
+                    compradorDAO.deleteComprador(cpfUsuario);
                     menu = false;
                     break;
             }

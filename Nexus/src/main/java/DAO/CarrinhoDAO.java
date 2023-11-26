@@ -53,4 +53,27 @@ public class CarrinhoDAO extends ConnectionDAO {
         }
         return idCarrinho;
     }
+
+    //delete
+    public boolean deleteCarrinho(int idCarrinho) {
+        connectToDB();
+        String sql = "DELETE FROM Carrinho where idCarrinho=?";
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setInt(1, idCarrinho);
+            pst.execute();
+            sucesso = true;
+        } catch (SQLException ex) {
+            System.out.println("Erro: " + ex.getMessage());
+            sucesso = false;
+        } finally {
+            try {
+                con.close();
+                pst.close();
+            } catch (SQLException exc) {
+                System.out.println("Erro: " + exc.getMessage());
+            }
+        }
+        return sucesso;
+    }
 }
