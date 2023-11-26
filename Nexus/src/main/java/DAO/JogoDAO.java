@@ -72,30 +72,6 @@ public class JogoDAO extends ConnectionDAO {
         return Jogos;
     }
 
-    public String selectJogoNome(int idJogo) {
-        connectToDB();
-        // Pega o nome de um Jogo específico
-        String sql = "SELECT nome FROM Jogo WHERE idjogo=?";
-        String nome = "";
-        try {
-            pst = con.prepareStatement(sql);
-            pst.setInt(1, idJogo);
-            rs = pst.executeQuery();
-            if(rs.next()){
-                nome = rs.getString("Nome");
-            }
-        } catch (SQLException e) {
-            System.out.println("Erro: " + e.getMessage());
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException e) {
-                System.out.println("Erro: " + e.getMessage());
-            }
-        }
-        return nome;
-    }
-
     public double selectJogoPreco(int idJogo) {
         connectToDB();
         // Pega o valor de um Jogo específico

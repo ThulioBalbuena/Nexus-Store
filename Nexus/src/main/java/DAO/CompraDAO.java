@@ -32,30 +32,4 @@ public class CompraDAO extends ConnectionDAO{
         }
         return sucesso;
     }
-
-
-    public double verCustoDeCompraAtual (int idCompra) {
-        connectToDB();
-        // Mostra o valor da compra
-        String sql = "SELECT valor FROM Compra WHERE idCompra=?";
-        double valor = 0;
-        try {
-            pst = con.prepareStatement(sql);
-            pst.setInt(1, idCompra);
-            rs = pst.executeQuery();
-            if(rs.next()){
-                valor = rs.getDouble("valor");
-            }
-        } catch (SQLException e) {
-            System.out.println("Erro: " + e.getMessage());
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException e) {
-                System.out.println("Erro: " + e.getMessage());
-            }
-        }
-        return valor;
-    }
-
 }

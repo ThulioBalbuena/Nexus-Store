@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 import java.util.Scanner;
 
 import exceptions.SemSaldoException;
@@ -57,7 +52,7 @@ public class Main {
 
 
             switch (opcao) {
-                case 1: //SELECT
+                case 1:
                     System.out.println("----------------------");
                     System.out.println("Lista de jogos disponíveis: ");
                     jogoDAO.selectJogo();
@@ -66,17 +61,20 @@ public class Main {
                     jogoHasPlataformaDAO.selectJogo_has_Plataforma();
                     break;
                 case 2:
-                    //INSERT
                     System.out.println("----------------------");
                     System.out.println("Digite o id do jogo que você deseja adicionar ao carrinho: ");
                     int jogo = entrada.nextInt();
                     carrinhoHasJogoDAO.insertCarrinho_has_Jogo(carrinhoDAO.selectCarrinhoID(cpfUsuario), jogo);
-                    valorTotal += jogoDAO.selectJogoPreco(jogo);
                     try {
-                        compradorDAO.verSaldo(cpfUsuario);
-                        compradorDAO.removerSaldo(cpfUsuario, valorTotal);
-                        if(compradorDAO.verSaldo(cpfUsuario) < 0) {
-                            compradorDAO.adicionarSaldo(cpfUsuario, valorTotal);
+                        compradorDAO.removerSaldo(cpfUsuario, jogoDAO.selectJogoPreco(jogo));
+                        double valorCheck = compradorDAO.verSaldo(cpfUsuario);
+                        if( valorCheck <= 0.0) {
+                            valorTotal -= jogoDAO.selectJogoPreco(jogo);
+                        }
+                        valorTotal += jogoDAO.selectJogoPreco(jogo);
+                        if(compradorDAO.verSaldo(cpfUsuario) < 0.0) {
+                            compradorDAO.adicionarSaldo(cpfUsuario, jogoDAO.selectJogoPreco(jogo));
+                            valorTotal -= jogoDAO.selectJogoPreco(jogo);
                             throw new SemSaldoException();
                         }
                         else {
@@ -88,10 +86,8 @@ public class Main {
                         System.out.println("Você não tem saldo suficiente para comprar esse jogo!");
                         System.out.println("Seu saldo atual é de: " + compradorDAO.verSaldo(cpfUsuario));
                     }
-
                     break;
                 case 3:
-                    //DELETE
                     System.out.println("----------------------");
                     System.out.println("Digite o id do jogo que você deseja retirar do carrinho: ");
                     int jogo2 = entrada.nextInt();
@@ -99,16 +95,13 @@ public class Main {
                     valorTotal -= jogoDAO.selectJogoPreco(jogo2);
                     compradorDAO.adicionarSaldo(cpfUsuario, jogoDAO.selectJogoPreco(jogo2));
                     System.out.println("Jogo removido do carrinho com sucesso!");
-                    break;
-                case 4:
-                    //SELECT
-                    int idCarrinho = carrinhoDAO.selectCarrinhoID(cpfUsuario);
-                    System.out.println("----------------------");
-                    System.out.println("Custo atual do carrinho: " + CompraDAO.verCustoDeCompraAtual(idCarrinho));
                     System.out.println("Seu saldo atual é de: " + compradorDAO.verSaldo(cpfUsuario));
                     break;
+                case 4:
+                    System.out.println("----------------------");
+                    System.out.println("O custo atual do seu carrinho é de: " + valorTotal);
+                    break;
                 case 5:
-                    //UPDATE
                     System.out.println("----------------------");
                     System.out.println("Digite o valor que você deseja depositar: ");
                     int valor = entrada.nextInt();
@@ -116,7 +109,6 @@ public class Main {
                     System.out.println("Depósito realizado com sucesso! Seu saldo atual é de: " + compradorDAO.verSaldo(cpfUsuario));
                     break;
                     case 6:
-                        //UPDATE
                         System.out.println("----------------------");
                         System.out.println("Obrigado por comprar na Nexus Store!");
                         compradorDAO.verSaldo(cpfUsuario);
@@ -128,7 +120,6 @@ public class Main {
                         menu = false;
                         break;
                 case 7:
-                    //delete
                     System.out.println("----------------------");
                     System.out.println("Obrigado por visitar a Nexus Store!");
                     System.out.println("Saindo da conta e excluindo dados...");

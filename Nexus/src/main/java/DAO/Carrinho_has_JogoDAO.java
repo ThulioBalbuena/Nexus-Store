@@ -22,7 +22,8 @@ public class Carrinho_has_JogoDAO extends ConnectionDAO{
             pst.execute();
             System.out.println("Processando solicitação...");
         } catch (SQLException exc) {
-            System.out.println("Erro: Jogo inexistente");
+            System.out.println("Erro: Jogo inexistente ou ja inserido, encerrando aplicação...");
+            System.exit(0);
         } finally {
             try {
                 con.close();

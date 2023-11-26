@@ -29,32 +29,16 @@ public class Jogo {
         return qtd_jogadores;
     }
 
-    public void setQtd_jogadores(int qtd_jogadores) {
-        this.qtd_jogadores = qtd_jogadores;
-    }
-
     public int getAno_de_lancamento() {
         return ano_de_lancamento;
-    }
-
-    public void setAno_de_lancamento(int ano_de_lancamento) {
-        this.ano_de_lancamento = ano_de_lancamento;
     }
 
     public String getGenero_nome() {
         return Genero_nome;
     }
 
-    public void setGenero_nome(int Genero_nome) {
-        Genero_nome = Genero_nome;
-    }
-
     public double getPreco() {
         return Preco;
-    }
-
-    public void setPreco(double preco) {
-        Preco = preco;
     }
 
     public int getidJogo() {
