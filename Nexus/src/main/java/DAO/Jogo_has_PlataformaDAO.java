@@ -9,11 +9,11 @@ public class Jogo_has_PlataformaDAO extends ConnectionDAO{
     //INSERT
     public boolean insertJogo_has_Plataforma(Jogo_has_Plataforma Jogo_has_Plataforma) {
         connectToDB();
-        String sql = "INSERT INTO Jogo_has_Plataforma (Jogo_idJogo, Plataforma_nome) values (?,?)";
+        String sql = "INSERT INTO Jogo_has_Plataforma (Jogo_idjogo, Plataforma_idPlataforma) values (?,?)";
         try {
             pst = con.prepareStatement(sql);
-            pst.setInt(1, Jogo_has_Plataforma.getJogo_idJogo());
-            pst.setString(2, Jogo_has_Plataforma.getPlataforma_nome());
+            pst.setInt(1, Jogo_has_Plataforma.getJogo_idjogo());
+            pst.setInt(2, Jogo_has_Plataforma.getPlataforma_idPlataforma());
             pst.execute();
             sucesso = true;
         } catch (SQLException exc) {
@@ -38,8 +38,9 @@ public class Jogo_has_PlataformaDAO extends ConnectionDAO{
             st = con.createStatement();
             rs = st.executeQuery(sql);
             while (rs.next()) {
-                Jogo_has_Plataforma Jogo_has_Plataforma = new Jogo_has_Plataforma(rs.getInt("Jogo_idJogo"), rs.getString("Plataforma_nome"));
-                System.out.println(Jogo_has_Plataforma.getJogo_idJogo() + " <---> " + Jogo_has_Plataforma.getPlataforma_nome());
+                Jogo_has_Plataforma Jogo_has_Plataforma = new Jogo_has_Plataforma(rs.getInt("Jogo_idjogo"), rs.getInt("Plataforma_idPlataforma"));
+                    System.out.println("Plataforma(id): " + Jogo_has_Plataforma.getPlataforma_idPlataforma());
+                    System.out.println("Jogo(id) : " + Jogo_has_Plataforma.getJogo_idjogo());
                 listaJogo_has_Plataforma.add(Jogo_has_Plataforma);
             }
         } catch (SQLException exc) {

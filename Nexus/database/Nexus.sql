@@ -11,7 +11,6 @@ CREATE TABLE IF NOT EXISTS `Nexus`.`Genero`
 );
 
 
-
 -- -----------------------------------------------------
 -- Table `Nexus`.`Jogo`
 -- -----------------------------------------------------
@@ -71,6 +70,18 @@ CREATE TABLE IF NOT EXISTS `Nexus`.`Carrinho`
             ON UPDATE NO ACTION
 );
 
+CREATE TABLE IF NOT EXISTS `Nexus` . `Compra`
+(
+    `idCompra` INT NOT NULL,
+    `Comprador_cpf` VARCHAR(45) NOT NULL,
+    `Valor` DOUBLE NOT NULL,
+    PRIMARY KEY (`idCompra`),
+    CONSTRAINT `fk_Compra_Comprador1`
+        FOREIGN KEY (`Comprador_cpf`)
+            REFERENCES `Nexus`.`Comprador` (`cpf`)
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION
+);
 
 -- -----------------------------------------------------
 -- Table `Nexus`.`Jogo_has_Plataforma`

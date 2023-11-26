@@ -13,7 +13,6 @@ public abstract class ConnectionDAO {
     public void connectToDB() {
         try {
             con = DriverManager.getConnection(url, user, password);
-            System.out.println("Conexao deu certo!");
         } catch (SQLException exc) {
             System.out.println("Erro: " + exc.getMessage());
         }

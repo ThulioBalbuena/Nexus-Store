@@ -2,12 +2,12 @@ package program.DAO.Model;
 
 public class Comprador {
 
-    private String cpf;
+    private int cpf;
     private String email;
     private String nome;
     private int saldo;
 
-    public Comprador(String cpf, String email, String nome, int saldo) {
+    public Comprador(int cpf, String email, String nome, int saldo) {
         this.cpf = cpf;
         this.email = email;
         this.nome = nome;
@@ -23,7 +23,7 @@ public class Comprador {
         return nome;
     }
 
-    public String getCpf() {
+    public int getCpf() {
         return cpf;
     }
     public int getSaldo() {

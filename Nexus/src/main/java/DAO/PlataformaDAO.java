@@ -9,10 +9,11 @@ public class PlataformaDAO extends ConnectionDAO {
     public boolean insertPlataforma(Plataforma Plataforma) {
         connectToDB();
         // Adiciona um novo usuário na tabela
-        String sql = "INSERT INTO Plataforma (nome) values (?)";
+        String sql = "INSERT INTO Plataforma (idPlataforma, nome) values (?,?)";
         try {
             pst = con.prepareStatement(sql);
-            pst.setString(1, Plataforma.getNomePlataforma());
+            pst.setInt(1, Plataforma.getIdPlataforma());
+            pst.setString(2, Plataforma.getNomePlataforma());
             pst.execute();
             sucesso = true;
         } catch (SQLException exc) {

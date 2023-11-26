@@ -1,20 +1,19 @@
 package program.DAO.Model;
 
 public class Jogo_has_Plataforma {
-    private int Jogo_idJogo;
-    private String Plataforma_nome;
+    private int Jogo_idjogo;
+    private int Plataforma_idPlataforma;
 
-    public Jogo_has_Plataforma(int Jogo_idJogo, String Plataforma_nome) {
-        this.Jogo_idJogo = Jogo_idJogo;
-        this.Plataforma_nome = Plataforma_nome;
+    public Jogo_has_Plataforma(int Jogo_idjogo, int Plataforma_idPlataforma) {
+        this.Jogo_idjogo = Jogo_idjogo;
+        this.Plataforma_idPlataforma = Plataforma_idPlataforma;
     }
 
-    // Getter
-    public int getJogo_idJogo() {
-        return Jogo_idJogo;
+    public int getJogo_idjogo() {
+        return Jogo_idjogo;
     }
 
-    public String getPlataforma_nome() {
-        return Plataforma_nome;
+    public int getPlataforma_idPlataforma() {
+        return Plataforma_idPlataforma;
     }
 }

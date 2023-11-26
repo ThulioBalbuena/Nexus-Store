@@ -13,7 +13,6 @@ public class Carrinho_has_Jogo {
     public int getCarrinho_idCarrinho() {
         return Carrinho_idCarrinho;
     }
-
     public int getJogo_idjogo() {
         return Jogo_idjogo;
     }

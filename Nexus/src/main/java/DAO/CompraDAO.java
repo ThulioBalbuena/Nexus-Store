@@ -1,20 +1,22 @@
 package DAO;
 
-import program.DAO.Model.Carrinho;
+import program.DAO.Model.Compra;
 import java.sql.SQLException;
 
-public class CarrinhoDAO extends ConnectionDAO {
+
+public class CompraDAO extends ConnectionDAO{
     //DAO - Data Access Object
     boolean sucesso = false; //Para saber se funcionou
     //INSERT
-    public boolean insertCarrinho(Carrinho Carrinho) {
+    public boolean insertCompra(Compra compra) {
         connectToDB();
-        // Adiciona um novo carrinho na tabela
-        String sql = "INSERT INTO Carrinho (idCarrinho, Comprador_cpf) values (?,?)";
+        // Insere o valor, data e FK do usuário que realizou a compra na tabela
+        String sql = "INSERT INTO Compra (idCompra, valor, Comprador_cpf) values(?,?,?)";
         try {
             pst = con.prepareStatement(sql);
-            pst.setInt(1, Carrinho.getComprador_cpf());
-            pst.setInt(2, Carrinho.getIdCarrinho());
+            pst.setInt(1, compra.getIdCompra());
+            pst.setDouble(2, compra.getValor());
+            pst.setInt(3, compra.getComprador_cpf());
             pst.execute();
             sucesso = true;
         } catch (SQLException exc) {
@@ -30,17 +32,19 @@ public class CarrinhoDAO extends ConnectionDAO {
         }
         return sucesso;
     }
-    public int selectCarrinhoID(int Comprador_cpf) {
+
+
+    public double verCustoDeCompraAtual (int idCompra) {
         connectToDB();
-        // Pega o ID do Carrinho que pertence ao usuário do ID fornecido
-        String sql = "SELECT idCarrinho FROM Carrinho, Comprador WHERE Carrinho.Comprador_cpf=?";
-        int idCarrinho = 0;
+        // Mostra o valor da compra
+        String sql = "SELECT valor FROM Compra WHERE idCompra=?";
+        double valor = 0;
         try {
             pst = con.prepareStatement(sql);
-            pst.setInt(1, Comprador_cpf);
+            pst.setInt(1, idCompra);
             rs = pst.executeQuery();
             if(rs.next()){
-                idCarrinho = rs.getInt("idCarrinho");
+                valor = rs.getDouble("valor");
             }
         } catch (SQLException e) {
             System.out.println("Erro: " + e.getMessage());
@@ -51,6 +55,7 @@ public class CarrinhoDAO extends ConnectionDAO {
                 System.out.println("Erro: " + e.getMessage());
             }
         }
-        return idCarrinho;
+        return valor;
     }
+
 }

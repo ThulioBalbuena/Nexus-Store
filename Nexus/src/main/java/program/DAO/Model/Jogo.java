@@ -1,16 +1,15 @@
 package program.DAO.Model;
 
 public class Jogo {
-
-    private int idjogo;
     private String Nome;
+    private int idJogo;
     private double Preco;
     private int qtd_jogadores;
     private int ano_de_lancamento;
     private String Genero_nome;
 
-    public Jogo(int idjogo, String Nome, String Genero_nome,double Preco, int ano_de_lancamento, int qtd_jogadores) {
-        this.idjogo = idjogo;
+    public Jogo(int idJogo, String Nome, String Genero_nome, double Preco, int ano_de_lancamento, int qtd_jogadores) {
+        this.idJogo = idJogo;
         this.Nome = Nome;
         this.Preco = Preco;
         this.qtd_jogadores = qtd_jogadores;
@@ -58,12 +57,8 @@ public class Jogo {
         Preco = preco;
     }
 
-    public int getidjogo() {
-        return idjogo;
-    }
-
-    public void setidjogo(int idjogo) {
-        this.idjogo = idjogo;
+    public int getidJogo() {
+        return idJogo;
     }
 }
 
